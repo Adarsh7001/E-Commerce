@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>order_view</title>
+{% endblock %}
+{% block style %}
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-5">
+            <h4 class="text-center fw-bold">{{u}}'s Orders</h4>
+            {% for i in customer %}
+            <img src="{{ i.product.image.url }}" height="100px" width="100px">
+</div>
+        <div>
+            <h3 class="text-center fw-bold">Details</h3>
+            <hr class="w-25 border border-2 border-dark mx-auto ">
+            <h5><b>Product Name:</b>{{ i.product.name }}</h5>
+            <h5><b>Product Price:</b>{{ i.product.price }}</h5>
+            <h5><b>Delivery Address:</b>{{ i.address }}</h5>
+            <h5><b>Ordered On:</b>{{ i.ordered_date }}</h5>
+            <h5><b>Delivery status:</b>{{ i.delivery_status }}</h5>
+        </div>
+        </div>
+</div>
+{% endfor %}
+{% endblock %}

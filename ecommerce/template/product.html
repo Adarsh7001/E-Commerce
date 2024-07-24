@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>home</title>
+{% endblock %}
+{% block style %}
+{% endblock %}
+{% block content %}
+ <img class="fit" src="{{ category.banner.url }}" height="300px" width="100%" style="margin-top:25px;object-fit:cover;"><br><br>
+
+<div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-3">
+                    </div>
+                    <div class="col-sm-6">
+                        <h2 style="font-family:cursive;font-weight:bold;margin-left:35%;margin-top:40px;">{{ category.name }}</h2>
+                        <p style="margin-top:30px;margin-bottom:70px; font-family:cursive;text-align:justify;">
+                       {{ category.description }}
+                        </p>
+                    </div>
+                    <div class="col-sm-3">
+                    </div>
+                </div>
+            </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            {% for i in product %}
+            <div class="col-sm-3">
+                <div class="card" style="width: 100%; margin-bottom: 20px;margin-top:50px;border: 1px black solid">
+                   <a href="{% url 'shop:details' i.id %}"><img src="{{ i.image.url }}" height="300px" style="object-fit: cover;" class="card-img-top" alt="{{ product.name }}"></a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ i.name }}</h5>
+                        <p class="card-text">{{ i.description }}</p>
+                        <h3 class="card-title">{{ i.price }}</h3>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

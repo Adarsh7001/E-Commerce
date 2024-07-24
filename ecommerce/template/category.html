@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title>home</title>
+{% endblock %}
+{% block style %}
+{% endblock %}
+{% block content %}
+<img src="{% static 'image/banner.jpg'%}" height="100%" width="100%" style="margin-top:25px;">
+<div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-3">
+                    </div>
+                    <div class="col-sm-6">
+                        <h2 style="font-family:cursive;font-weight:bold;margin-left:28%;margin-top:40px;">OUR COLLECTIONS</h2>
+                        <p style="margin-top:30px;margin-bottom:70px; font-family:cursive;text-align:justify;">
+                       Welcome to Sara Waqatyan, your premier destination for the latest trends in men's fashion. Our online store is dedicated to providing a diverse range of stylish and high-quality clothing to suit every man's unique taste. Whether you're looking for casual wear, business attire, or something special for an occasion, Sara Waqatyan has you covered
+                        </p>
+                    </div>
+                    <div class="col-sm-3">
+                    </div>
+                </div>
+            </div>
+
+<!--______________CARDS_____________-->
+<div class="container-fluid">
+    <div class="row">
+        {% for i in category %}
+        <div class="col-sm-3">
+            <div class="card" style="width: 100%; margin-bottom: 20px;">
+                <img src="{{ i.image.url }}" height="320px"  style="object-fit:cover;" class="card-img-top" alt="{{ i.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ i.name }}</h5>
+                    <a href="{% url 'shop:product' i.id %}" class="btn btn-primary">Buy Now</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>cart_view</title>
+{% endblock %}
+{% block style %}
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-7">
+            <table class="table table-bordered" >
+                <tr>
+                    <th colspan="6">Cart Items</th>
+                </tr>
+                {% for i in cart %}
+                <tr>
+                    <td><img src="{{ i.product.image.url }}" width="150px"height="150px"></td>
+                    <td>{{ i.product.name }}</td>
+                    <td>{{ i.product.id }}</td>
+                    <td>{{ i.quantity }}<br>
+                        Unit Price:{{ i.quantity }}*{{ i.product.price }}
+                    </td>
+                    <td>Subtotal:{{ i.subtotal }}</td>
+                    <td>
+                        {% if i.product.stock > 0 %}
+                      <a href="{% url 'cart:cart' i.product.id  %}"><i class="fa-solid fa-circle-plus" style="color:black;"></i></a><br>
+                        <a href="{% url 'cart:decrement' i.product.id %}"><i class="fa-solid fa-circle-minus" style="color:black;"></i></a><br>
+                        <a href="{% url 'cart:delete' i.product.id %}"><i class="fa-solid fa-trash" style="color:black;"></i></a>
+                        {% else %}
+                        <a href="{% url 'cart:decrement' i.product.id %}"><i class="fa-solid fa-circle-minus" style="color:black;"></i></a><br>
+                        <a href="{% url 'cart:delete' i.product.id %}"><i class="fa-solid fa-trash" style="color:black;"></i></a>
+                        {% endif %}
+                    </td>
+
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="col-sm-4">
+            <p>Total Amount:</p><br>
+   <a href="{% url 'cart:order' %}" style="border-radius:25px;background-color:black;color:white;text-decoration:none;height:30px;width:300px;display:inline-block;text-align:center;line-height:30px;margin-top:50px;margin-left:100px;">Place Order</a>
+    <a href="{% url 'shop:home' %}" style="border-radius:25px;background-color:black;color:white;text-decoration:none;height:30px;width:300px;display:inline-block;text-align:center;line-height:30px;margin-top:50px;margin-left:100px;">Continue Shopping</a>
+
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}

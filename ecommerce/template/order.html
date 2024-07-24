@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>order</title>
+{% endblock %}
+{% block style %}
+ <style>
+        .centered-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+        }
+        .form-container {
+            background-color: black;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            height: 600px;
+            width: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+     }
+    </style>
+{% endblock %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+<div class="container-fluid centered-form">
+    <div class="row">
+        <div class="col-sm-12 d-flex justify-content-center">
+            <div class="form-container">
+                <h2 style="margin-left:31%;">Enter Details...</h2>
+                <label>Phone</label><br>
+                <input type="text" placeholder="Enter phone number" name="n"><br>
+                <label>Address</label><br>
+                <input type="text" placeholder="Enter Address" name="a"><br>
+                <label>Zip code</label><br>
+                <input type="text" placeholder="Enter Zip code" name="z"><br>
+                <button type="submit" class="btn-1">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Details</title>
+{% endblock %}
+{% block style %}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-5">
+            <img src="{{ detail.image.url }}" alt="{{ detail.name }}" height="100%" width="100%">
+        </div>
+        <div class="col-sm-5 "style="margin-top:120px;">
+            <h2>{{ detail.name }}</h2>
+            <h4>{{ detail.price }}</h4>
+            {% if user.is_superuser == True %}
+                {% if detail.stock %}
+                <h3 style="color:green;">In Stock</h3>
+            <a style="text-decoration:none;"  href="{% url 'admin:index' %}" class="btn_1">Add stock</a>
+                {% else %}
+                  <h3 style="color:green;">Out of Stock</h3>
+            <a style="text-decoration:none;"  href="{% url 'admin:index' %}" class="btn_1">Add stock</a>
+                {% endif %}
+            {% else %}
+            {% if detail.stock %}
+                <h3 style="color:red;">In Stock</h3>
+             <a href="{% url 'cart:cart' detail.id %}" class="btn btn-secondary">Add to cart</a>
+             <a href="#" class="btn btn-secondary">Buy Now</a>
+            {% else %}
+            <h3 style="text-red">Out of stock</h3>
+            {% endif %}
+            {% endif %}
+                <p>{{ detail.description }}</p>
+
+        </div>
+        <div class="col-sm-2">
+        </div>
+    </div>
+</div>
+{% endblock %}

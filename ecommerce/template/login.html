@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Login</title>
+{% endblock %}
+{% block style %}
+<style>
+.form-control{
+width:50%;
+margin-left:25%;}
+  .form-label{
+  margin-left:25%}
+  .btn{
+  margin-left:47%}
+  .btn:hover{
+  background-color:black;}
+  .form-control:hover{
+  background-color:rgb(222, 222, 222);}
+
+</style>
+{% endblock %}
+{% block content %}
+<h2>Login</h2>
+<form method="post">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label class="form-label">Username</label>
+    <input type="text" class="form-control" name="u" placeholder="User name">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Password</label>
+    <input type="password" class="form-control" name="p" placeholder="password">
+  </div>
+  <div class="mb-3">
+    <input type="submit" class="form-control">
+</form>
+  </div>
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}
